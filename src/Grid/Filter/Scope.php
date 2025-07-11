@@ -69,7 +69,7 @@ class Scope implements Renderable
     public function condition()
     {
         return $this->queries->map(function ($query) {
-            return [$query['method'] => $query['arguments']];
+            return [$query['method'] => $query['parameters']];
         })->toArray();
     }
 
