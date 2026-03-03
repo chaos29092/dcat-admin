@@ -1579,6 +1579,10 @@ class Form implements Renderable
     {
         $path = $this->resource ?: $this->request->getUri();
 
+        if (config('admin.https')) {
+            $path = preg_replace('/^http:\/\//i', 'https://', $path);
+        }
+
         $segments = explode('/', trim($path, '/'));
 
         if ($slice != 0) {

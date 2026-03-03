@@ -32,19 +32,19 @@ class FlushAdminState
 
     public function handle($event): void
     {
-        $provider = new AdminServiceProvider($this->app);
+        $provider = new AdminServiceProvider($event->sandbox);
 
-        $this->forgetServiceInstances();
+        $this->forgetServiceInstances($event->sandbox);
 
         $provider->registerServices();
         $provider->registerExtensions();
         $provider->boot();
     }
 
-    protected function forgetServiceInstances()
+    protected function forgetServiceInstances(Container $container)
     {
         foreach ($this->adminServices as $service) {
-            $this->app->forgetInstance($service);
+            $container->forgetInstance($service);
         }
     }
 }
