@@ -50,9 +50,9 @@ class HandleFormController
      */
     protected function getField(Request $request, $form)
     {
-        $column = $this->uploader()->upload_column ?: $request->get('_column');
+        $column = $this->uploader()->upload_column ?: $request->post('_column');
 
-        if (! $relation = $request->get('_relation')) {
+        if (! $relation = $request->post('_relation')) {
             return $form->field($column);
         }
 
@@ -97,7 +97,7 @@ class HandleFormController
             throw new AdminException('Invalid form request.');
         }
 
-        $formClass = $request->get(Form::REQUEST_NAME);
+        $formClass = $request->post(Form::REQUEST_NAME);
 
         if (! class_exists($formClass)) {
             throw new AdminException("Form [{$formClass}] does not exist.");

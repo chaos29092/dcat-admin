@@ -512,7 +512,7 @@ class Model
             return;
         }
 
-        return $this->currentPage ?: ($this->currentPage = ($this->request->get($this->getPageName()) ?: 1));
+        return $this->currentPage ?: ($this->currentPage = ($this->request->query($this->getPageName()) ?: 1));
     }
 
     /**
@@ -536,7 +536,7 @@ class Model
             return;
         }
 
-        $perPage = $this->request->get($this->getPerPageName()) ?: $this->perPage;
+        $perPage = $this->request->query($this->getPerPageName()) ?: $this->perPage;
         if ($perPage) {
             return (int) $perPage;
         }
@@ -587,7 +587,7 @@ class Model
     public function getSort()
     {
         if (empty($this->sort)) {
-            $this->sort = $this->request->get($this->getSortName());
+            $this->sort = $this->request->query($this->getSortName());
         }
 
         if (empty($this->sort['column']) || empty($this->sort['type'])) {

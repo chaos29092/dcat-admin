@@ -634,7 +634,7 @@ class Column
      */
     protected function isSorted()
     {
-        $this->sort = app('request')->get($this->grid->model()->getSortName());
+        $this->sort = app('request')->query($this->grid->model()->getSortName());
 
         if (empty($this->sort)) {
             return false;

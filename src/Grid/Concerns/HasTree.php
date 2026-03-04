@@ -202,7 +202,7 @@ HTML
      */
     public function getCurrentChildrenPage()
     {
-        return $this->request->get(
+        return $this->request->query(
             $this->getChildrenPageName(
                 $this->getParentIdFromRequest()
             )
@@ -222,7 +222,7 @@ HTML
      */
     public function getParentIdFromRequest()
     {
-        return $this->request->get(
+        return $this->request->query(
             $this->getParentIdQueryName()
         ) ?: $this->getDefaultParentId();
     }
@@ -287,7 +287,7 @@ HTML
      */
     public function getDepthFromRequest()
     {
-        return $this->request->get(
+        return $this->request->query(
             $this->getDepthQueryName()
         ) ?: 0;
     }

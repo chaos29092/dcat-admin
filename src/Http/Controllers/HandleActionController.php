@@ -17,7 +17,7 @@ class HandleActionController
     {
         $action = $this->resolveActionInstance($request);
 
-        $action->setKey($request->get('_key'));
+        $action->setKey($request->post('_key'));
 
         if (! $action->passesAuthorization()) {
             $response = $action->failedAuthorization();
@@ -40,7 +40,7 @@ class HandleActionController
             throw new AdminException('Invalid action request.');
         }
 
-        $actionClass = str_replace('_', '\\', $request->get('_action'));
+        $actionClass = str_replace('_', '\\', $request->post('_action'));
 
         if (! class_exists($actionClass)) {
             throw new AdminException("Action [{$actionClass}] does not exist.");

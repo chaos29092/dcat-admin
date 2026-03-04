@@ -40,14 +40,14 @@ class RenderableController
 
     protected function initTranslation(Request $request)
     {
-        if ($path = $request->get('_trans_')) {
+        if ($path = $request->query('_trans_')) {
             Admin::translation($path);
         }
     }
 
     protected function newRenderable(Request $request): LazyRenderable
     {
-        $class = $request->get('renderable');
+        $class = $request->query('renderable');
 
         $class = str_replace('_', '\\', $class);
 
