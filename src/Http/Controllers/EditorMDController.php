@@ -12,7 +12,7 @@ class EditorMDController
     public function upload(Request $request)
     {
         $file = $request->file('editormd-image-file');
-        $dir = trim($request->post('dir'), '/');
+        $dir = trim($request->post('dir') ?? '', '/');
         $disk = $this->disk();
 
         $newName = $this->generateNewName($file);

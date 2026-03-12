@@ -12,7 +12,7 @@ class TinymceController
     public function upload(Request $request)
     {
         $file = $request->file('file');
-        $dir = trim($request->post('dir'), '/');
+        $dir = trim($request->post('dir') ?? '', '/');
         $disk = $this->disk();
 
         $newName = $this->generateNewName($file);
